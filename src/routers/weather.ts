@@ -15,7 +15,7 @@ export default function weatherRouter() {
       res.status(200).json(weatherInfo);
     } catch (e) {
       // catch the error
-      res.status(500).json({error: e});
+      res.status(500).json({ error: "Ops... An error ocurred, please retry later" });
     }
   });
 
