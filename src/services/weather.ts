@@ -15,8 +15,11 @@ export const getWeatherByCity = async ({ cityName } : getWeatherByCityArgs) => {
     },
   })).data;
 
+  console.log(response);
+
   return {
     id: response.id,
+    name: response.name,
     weatherDescription: response.weather[0].description,
     weatherIcon: `https://openweathermap.org/img/w/${response.weather[0].icon}.png`,
     unitOfMeasure: "celsius",
@@ -27,3 +30,4 @@ export const getWeatherByCity = async ({ cityName } : getWeatherByCityArgs) => {
     humidity: response.main.humidity,
   };
 }
+
