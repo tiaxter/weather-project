@@ -1,4 +1,5 @@
 import axios from "axios";
+import {kelvinToCelsius} from "../utils/temperature";
 
 type getWeatherByCityArgs = {
   cityName: string,
@@ -14,5 +15,15 @@ export const getWeatherByCity = async ({ cityName } : getWeatherByCityArgs) => {
     },
   })).data;
 
-  return response;
+  return {
+    id: response.id,
+    weatherDescription: response.weather[0].description,
+    weatherIcon: `https://openweathermap.org/img/w/${response.weather[0].icon}.png`,
+    unitOfMeasure: "celsius",
+    temperature: kelvinToCelsius(response.main.temp),
+    termperatureMininum: kelvinToCelsius(response.main.temp_min),
+    termperatureMaxinum: kelvinToCelsius(response.main.temp_max),
+    pressure: response.main.pressure,
+    humidity: response.main.humidity,
+  };
 }
