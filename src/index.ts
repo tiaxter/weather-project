@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import express, {type Request, type Response, type NextFunction} from "express";
+import cors from "cors";
 import weatherRouter from "./routers/weather";
 import businessRouter from "./routers/business";
 
@@ -8,6 +9,8 @@ dotenv.config({
 });
 
 const app = express();
+
+app.use(cors());
 
 app.use("/api", [
   weatherRouter(),
