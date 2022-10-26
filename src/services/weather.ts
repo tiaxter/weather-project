@@ -15,8 +15,6 @@ export const getWeatherByCity = async ({ cityName } : getWeatherByCityArgs) => {
     },
   })).data;
 
-  console.log(response);
-
   return {
     id: response.id,
     name: response.name,
