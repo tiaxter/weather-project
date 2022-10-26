@@ -1,5 +1,6 @@
 import axios from "axios";
 import {kelvinToCelsius} from "../utils/temperature";
+import {getBusinessByCity} from "./business";
 
 type getWeatherByCityArgs = {
   cityName: string,
@@ -29,3 +30,14 @@ export const getWeatherByCity = async ({ cityName } : getWeatherByCityArgs) => {
   };
 }
 
+export const getWeatherWithCityData = async (cityName: string) => {
+  // get weather data using the method above
+  const weatherData = await getWeatherByCity({cityName})
+  // get business data of the city
+  const cityData = await getBusinessByCity(cityName);
+
+  return {
+    weather: weatherData,
+    business: cityData,
+  };
+}
